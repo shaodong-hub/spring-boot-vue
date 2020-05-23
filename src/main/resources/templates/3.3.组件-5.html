@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.min.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <a href="" @click.prevent="com_name='login'">登录</a>
+    <a href="" @click.prevent="com_name='register'">注册</a>
+
+    <component :is="com_name"></component>
+
+</div>
+<script>
+    Vue.component("login", {template: "<h3>登录组件</h3>"});
+    Vue.component("register", {template: "<h3>注册组件</h3>"});
+
+    new Vue({
+        el: '#app',
+        data: {
+            com_name: "login"
+        },
+        methods: {}
+    });
+
+</script>
+</body>
+</html>

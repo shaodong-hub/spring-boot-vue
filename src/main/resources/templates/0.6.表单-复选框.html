@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.min.js"></script>
+
+</head>
+<body>
+
+
+<div id="app">
+    <p>多选框</p>
+    <input type="checkbox" v-model="names" id="alibaba" value="alibaba">
+    <label for="alibaba">alibaba</label>
+    <input type="checkbox" v-model="names" id="tenxun" value="tenxun">
+    <label for="tenxun">tenxun</label>
+    <input type="checkbox" v-model="names" id="baidu" value="baidu">
+    <label for="baidu">baidu</label>
+    <br>
+    <span>选择的值为: {{names}}</span>
+</div>
+
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            names: [],
+        },
+        methods: {}
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.min.js"></script>
+    <script src="../static/js/axios.min.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <br>
+    <input type="button" value="GET请求" @click="getInfo">
+    <p>{{get_data}}</p>
+    <br>
+    <input type="button" value="POST请求" @click="postInfo">
+    <p>{{post_data}}</p>
+    <br>
+    <input type="button" value="PUT请求" @click="putInfo">
+    <br>
+    <input type="button" value="DELETE请求" @click="deleteInfo">
+
+</div>
+
+<h3>表单登录</h3>
+<form action="http://127.0.0.1:8080/authentication/form" method="post">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <table>
+        <tr>
+            <td>用户名:</td>
+            <td><input type="text" name="username"></td>
+        </tr>
+        <tr>
+            <td>密码:</td>
+            <td><input type="password" name="password"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button type="submit">登录</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            get_data: '...',
+            post_data: '...',
+            count_id: 1
+        },
+        methods: {
+            getInfo() {
+                axios({
+                    url: 'http://127.0.0.1:8080/api/v1/index'
+                }).then(response => {
+                    this.get_data = response.data;
+                })
+
+            },
+            postInfo() {
+                const now = new Date();
+                axios.defaults.baseURL = "http://127.0.0.1:8088";
+                axios.post('/data', {
+                    'id': ++this.count_id,
+                    'data': this.count_id,
+                    'date': now.getMilliseconds()
+                })
+                    .then(response => this.post_data = response.data)
+            },
+            putInfo() {
+
+            },
+            deleteInfo() {
+
+            }
+
+        }
+    });
+</script>
+</body>
+</html>

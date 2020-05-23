@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.min.js"></script>
+
+</head>
+<body>
+
+
+<div id="app">
+
+    <div>
+        <label>ID:
+            <input type="text" v-model="id">
+        </label>
+        <label>
+            Name:
+            <input type="text" v-model="name">
+        </label>
+        <input type="button" value="添加" @click="add">
+
+        <label>
+            搜索关键字：
+            <input type="text" v-model="keyword">
+        </label>
+
+    </div>
+
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Ctime</th>
+            <th>Operation</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="item in search(keyword)" :key="item.id">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.ctime}}</td>
+            <td><a href="" @click.prevent="del(item.id)">删除</a></td>
+        </tr>
+
+
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            id: '',
+            name: '',
+            keyword: '',
+            list: [
+                {id: 1, name: '奔驰', ctime: new Date()},
+                {id: 2, name: '宝马', ctime: new Date()},
+            ]
+        },
+        methods: {
+            add() {
+                const car = {id: this.id, name: this.name, ctime: new Date()};
+                this.list.push(car);
+                this.id = this.name = '';
+            },
+            del(id) {
+                this.list.some((item, i) => {
+                    if (item.id === id) {
+                        this.list.splice(i, 1);
+                        return true;
+                    }
+                })
+            },
+            search(keyword) {
+                return this.list.filter(one => one.name.includes(keyword));
+            }
+
+
+        }
+    })
+
+</script>
+</body>
+</html>

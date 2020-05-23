@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.min.js"></script>
+
+</head>
+<body>
+
+
+<div id="app">
+    <p style="font-size: 25px">计数器 {{counter}}</p>
+    <button @click="add()" style="font-size: 25px">click</button>
+</div>
+
+
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            counter: 1,
+        },
+        methods: {
+            add() {
+                this.counter++;
+            }
+        }
+    });
+    vm.$watch('counter', function (after, before) {
+        alert('计数器值的变化 :' + before + ' 变为 ' + after + '!');
+    })
+
+</script>
+</body>
+</html>

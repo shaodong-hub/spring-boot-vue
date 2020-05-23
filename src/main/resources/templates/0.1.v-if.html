@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.min.js"></script>
+    <script src="../static/js/vue-resource.min.js"></script>
+
+</head>
+<body>
+
+
+<div id="app">
+    <input @click="seen = !seen" type="button" value="click">
+    <p v-if="seen">see</p>
+
+</div>
+
+
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            seen: true
+        },
+        methods: {}
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.min.js"></script>
+
+</head>
+<body>
+
+
+<div id="app">
+    <com1></com1>
+</div>
+
+<template id="tmp1">
+    <div>
+        <h1>wdwdwwdw</h1>
+    </div>
+</template>
+
+
+
+<script>
+    Vue.component('com1', {template: '#tmp1'});
+    const vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {}
+    });
+</script>
+</body>
+</html>

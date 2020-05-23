@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.min.js"></script>
+    <script src="../static/js/vue-resource.min.js"></script>
+
+</head>
+<body>
+
+
+<div id="app">
+    <p> {{input_data}} </p>
+    <input type="button" @click="reverse(input_data)" value="反转消息">
+</div>
+
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            input_data: "Hello Vue.js!"
+        },
+        methods: {
+            reverse(input) {
+                this.input_data = input.split(" ").reverse().join(" ")
+            }
+        }
+    });
+</script>
+</body>
+</html>

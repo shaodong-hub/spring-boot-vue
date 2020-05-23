@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.min.js"></script>
+
+</head>
+<body>
+
+
+<div id="app">
+    <p>input 元素</p>
+    <input v-model="message" placeholder="编辑我...">
+    <p>数据是: {{message}}</p>
+</div>
+
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            message: "",
+        },
+        methods: {}
+    });
+</script>
+</body>
+</html>

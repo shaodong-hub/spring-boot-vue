@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.min.js"></script>
+
+</head>
+<body>
+<div id="app">
+    <counter></counter>
+</div>
+
+<template id="tmp1">
+    <div>
+        <input type="button" value="+1" @click="inc++">
+        <p>{{inc}}</p>
+    </div>
+</template>
+
+<script>
+    Vue.component('counter', {template: '#tmp1', data: () => ({"inc": 0})});
+    new Vue({
+        el: '#app',
+        data: {
+
+        },
+        methods: {
+
+        }
+    });
+
+</script>
+</body>
+</html>

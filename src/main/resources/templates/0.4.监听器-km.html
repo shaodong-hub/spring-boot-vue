@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.min.js"></script>
+
+</head>
+<body>
+
+
+<div id="app">
+    千米
+    <label>
+        <input type="text" v-model="kilometers">
+    </label>
+    米
+    <label>
+        <input type="text" v-model="meters">
+    </label>
+</div>
+
+
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            kilometers: 0,
+            meters: 0,
+        },
+        methods: {
+            add() {
+
+            }
+        }
+    });
+    vm.$watch('kilometers', function (after, before) {
+        this.meters = this.kilometers * 1000;
+    });
+    vm.$watch('meters', function (after, before) {
+        this.kilometers = this.meters / 1000;
+    });
+
+    // vm.$watch('kilometers', (after, before) => this.meters = this.kilometers * 1000);
+    // vm.$watch('meters', (after, before) => this.kilometers = this.meters / 1000);
+
+
+</script>
+</body>
+</html>

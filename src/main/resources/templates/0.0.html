@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.min.js"></script>
+
+</head>
+<body>
+
+
+<div id="app">
+
+</div>
+
+
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {},
+        methods: {
+            show() {
+                console.log("show 被执行了");
+            }
+        },
+        beforeCreate() {
+            // 最先被执行
+            console.log("beforeCreate 被执行了");
+        },
+        created() {
+            this.show();
+            console.log("created 被执行了");
+        }
+
+    });
+</script>
+</body>
+</html>

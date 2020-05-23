@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.min.js"></script>
+    <script src="../static/js/vue-resource.min.js"></script>
+    <script src="../static/js/axios.min.js"></script>
+</head>
+<body>
+
+
+<div id="app">
+    <p> {{input_data}} </p>
+    <input type="button" @click="postInfo()" value="反转消息">
+</div>
+
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            input_data: "Hello Vue.js!",
+            web: {
+                "check": true,
+                "id": "",
+                "account": "13333333333",
+                "property": "",
+                "areaFlag": "A001B001C002",
+                "areaCode": "",
+                "hostname": "www.qqqq.com",
+                "https": 1,
+                "httpsForcedJump": 0,
+                "httpSource": 0,
+                "httpsCrt": "",
+                "httpsKey": "",
+                "backType": 0,
+                "backendAddr": "11.11.11.11",
+                "ipv6": "",
+                "port": "80",
+                "httpsPort": "",
+                "agentState": 0,
+                "balancing": 0
+            }
+        },
+        methods: {
+            postInfo() {
+                // axios.defaults.baseURL = "";
+                axios.post('http://172.28.16.152:8082/ibs/ibs/website/website', this.web)
+                    .then(response => {
+                        this.post_data = response.data
+                        console.log(this.post_data)
+                    }).catch(e => console.log(e))
+            },
+        }
+    });
+</script>
+</body>
+</html>

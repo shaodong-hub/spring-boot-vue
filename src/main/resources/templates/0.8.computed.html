@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.min.js"></script>
+    <script src="../static/js/vue-resource.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <label>
+        <input type="text" value="输入" v-model="msg">
+    </label>
+    <p> {{comp}} </p>
+</div>
+<script>
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            msg: "hello vue!"
+        },
+        methods: {},
+        computed: {
+            comp () {
+                return 'computed: ' + this.msg;
+            }
+        }
+    });
+</script>
+</body>
+</html>

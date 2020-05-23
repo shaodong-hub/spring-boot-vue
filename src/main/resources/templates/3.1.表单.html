@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.min.js"></script>
+    <script src="../static/js/axios.min.js"></script>
+</head>
+<body>
+
+
+<div id="app">
+    <div>
+        <h3>添加</h3>
+        <label>
+            name:<input type="text" v-model="id">
+        </label>
+        <label>
+            name:<input type="text" v-model="name">
+        </label>
+        <input type="button" value="添加" @click="addOne">
+
+    </div>
+
+
+    <table>
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>名称</th>
+            <th>时间</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="one in dataList">
+            <td>{{one.id}}</td>
+            <td>{{one.name}}</td>
+            <td>{{one.date}}</td>
+            <td>
+                <a href="" @click="deleteOne(one.id)">删除</a>
+            </td>
+
+        </tr>
+
+
+        </tbody>
+
+
+    </table>
+
+</div>
+
+
+<script>
+    axios.defaults.baseURL = "http://127.0.0.1:8088";
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            id: '',
+            name: '',
+            date: '',
+            message: "",
+            dataList: []
+
+        },
+        created() {
+            this.findAll()
+        },
+        methods: {
+            findAll() {
+                axios.get("/data").then(response => this.dataList = response.data)
+            },
+            addOne() {
+                axios.post("/data", {"id": this.id, "name": this.name, "date": new Date()})
+                    .then(response => {
+                        if (response.status === 200) {
+                            this.findAll();
+                        }
+                    })
+                    .catch(error => console.log(error))
+                    .finally(() => {
+                        this.id = null;
+                        this.name = null;
+                        this.date = null;
+                    });
+            },
+            deleteOne(id) {
+                axios.delete("/data/" + id).then(response => {
+                    if (response.status === 200) {
+                        this.findAll();
+                    }
+                }).catch(error => console.log(error))
+                    .finally(() => {
+                        this.id = null;
+                    });
+            }
+        }
+    });
+</script>
+</body>
+</html>

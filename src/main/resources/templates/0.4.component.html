@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/vue.min.js"></script>
+    <script src="../static/js/vue-resource.min.js"></script>
+
+</head>
+<body>
+<div id="app">
+
+    <todo-item v-for="item in message" v-bind:item="item" v-bind:key="item.id"></todo-item>
+
+</div>
+<script>
+
+    Vue.component("todo-item", {props: ["item"], template: "<li>{{item.text}}</li>"});
+    const vm = new Vue({
+        el: '#app',
+        data: {
+            message: [
+                {"id": 1, "text": "蔬菜"},
+                {"id": 2, "text": "水果"},
+                {"id": 3, "text": "鸡肉"},
+            ]
+        },
+        methods: {}
+    });
+</script>
+</body>
+</html>
